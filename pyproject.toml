@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0", "dtaidistance", "matplotlib", "pandas", "scikit-learn", "tqdm", "natsort", "chardet"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "similarity_ts"
+version = "0.0.10"
+authors = [
+    { name = "Alejandro Fernández-Montes", email = "afdez@us.es" },
+    { name = "Damián Fernández-Cerero", email = "damiancerero@us.es" },
+    { name = "Felipe Escalera González", email = "fescalera@us.es" },
+]
+dependencies = ["dtaidistance", "matplotlib", "pandas", "scikit-learn", "tqdm", "natsort", "chardet"]
+description = "SimilarityTS is an open-source project designed to facilitate the evaluation and comparison of multivariate time series data"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+[project.urls]
+"Homepage" = "https://github.com/alejandrofdez-us/similarity-ts"
+"Bug Tracker" = "https://github.com/alejandrofdez-us/similarity-ts/issues"
