@@ -1,4 +1,4 @@
-from kl import Kl
+from .kl import Kl
 from .metric import Metric
 
 
