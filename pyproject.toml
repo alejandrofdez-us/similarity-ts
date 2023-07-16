@@ -1,9 +1,9 @@
 [build-system]
-requires = ["setuptools>=61.0", "dtaidistance", "matplotlib", "pandas", "scikit-learn", "tqdm", "natsort", "chardet"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 [project]
 name = "similarity_ts"
-version = "0.0.10"
+version = "0.0.13"
 authors = [
     { name = "Alejandro Fernández-Montes", email = "afdez@us.es" },
     { name = "Damián Fernández-Cerero", email = "damiancerero@us.es" },
