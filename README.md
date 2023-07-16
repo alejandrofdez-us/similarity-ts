@@ -65,12 +65,10 @@ This toolkit can generate the following figures:
 
 ## Installation
 
-To get started, follow these steps to install the toolkit:
-
-### Step 1. Clone the repository to your local machine:
+Install the package using pip in your local environment:
 
 ```Bash
-pip install similarity-ts 
+pip install similarity-ts
 ```
 
 ## Usage
@@ -127,9 +125,7 @@ The following arguments are also available for fine-tuning:
 
 ### Minimal usage examples:
 
-The following examples of evaluation of similarity are shown below:
-
-1. Compute metrics between random time series:
+1. Compute metrics between random time series (`ts1`: one time series of lenght 200 and 2 dimensions and `ts2`: five time series of length 100 and 2 dimensions):
     ```Python
     import numpy as np
     from similarity_ts.similarity_ts import SimilarityTs
@@ -142,7 +138,7 @@ The following examples of evaluation of similarity are shown below:
     ```
 
 1. Compute metrics and figures between random time series and save figures:
-    ```Bash
+    ```Python
     import os
     import numpy as np
     from similarity_ts.plots.plot_factory import PlotFactory
@@ -176,51 +172,10 @@ The following examples of evaluation of similarity are shown below:
     if __name__ == '__main__':
         main()
     ```
+### Customised usage
 
-1. A time series and all time series within a directory computing only DTW metric and DTW figure::
-    ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw
-    ```
 
-1. A time series and all time series within a directory computing every metric and figure available:
-    ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2 experiments -m js mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne
-    ```
-
-1. Comparison using filenames whose first rows are used as headers (all filenames must contain the same header):
-    ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2 experiments -m dtw -f dtw -head
-    ```
-
-1. Comparison between time series specifying the frequency in seconds in which samples were taken:
-    ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -ts_freq_secs 60
-    ```
-
-1. Comparison between time series specifying the stride that determines the step or distance by which a fixed-size
-   window moves over the first time series:
-    ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -strd 5
-    ```
-
-1. Comparison between time series specifying the window selection metric to be used when selecting the most similar
-   windows in
-   the first time series:
-
-    ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -w_select_met js
-    ```
-
-1. Using our sample time series to compute every single metric and figure:
-
-    ```Bash
-    python cli.py -ts1 data_samples/sample_1.csv -ts2_path experiments -head -m mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne -w_select_met cc -ts_freq_secs 60 -strd 5
-    ```
-
-Every metric computation will be found in the `results` directory and every figure generated will be found at `figures`
-directory.
-
-## Advanced usage
+## Extending the toolkit
 
 Additionally, users may implement their own metric or figure classes and include them within the `metrics` or `plots`
 directory. To ensure compatibility with our framework, they have to inherit from the base classes (`Metric` and `Plot`).
