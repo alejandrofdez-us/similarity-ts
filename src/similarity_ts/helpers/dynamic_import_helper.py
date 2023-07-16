@@ -8,7 +8,7 @@ def find_available_classes(folder_path, parent_class, package):
         for file_name in files:
             if file_name.endswith('.py'):
                 module_name = file_name[:-3]
-                module = __import_module(module_name, package)
+                module = importlib.import_module(f'similarity_ts.{package}.{module_name}', package=package)
                 if __is_module_subclass(module, module_name, parent_class):
                     available_class = getattr(module, __to_camel_case(module_name))()
                     available_classes[available_class.name] = available_class
@@ -22,12 +22,6 @@ def __is_module_subclass(module, module_name, parent_class):
             return hasattr(module, class_name) and issubclass(getattr(module, class_name), parent_class)
     return False
 
-
-def __import_module(module_name, package):
-    try:
-        return importlib.import_module(f'similarity_ts.{package}.{module_name}', package=package)
-    except ImportError:
-        return None
 
 
 def __to_camel_case(snake_str):
