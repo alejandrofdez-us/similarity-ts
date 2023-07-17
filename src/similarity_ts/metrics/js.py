@@ -10,9 +10,9 @@ class Js(Metric):
 
     def compute(self, ts1, ts2, similarity_ts):
         metric_result = {'Multivariate': self.__js_distance_multivariate(ts1, ts2)}
-        for column_name in similarity_ts.header_names:
+        for column_name, column_index in zip(similarity_ts.header_names, range(len(similarity_ts.header_names))):
             metric_result.update(
-                {column_name: self.__js_distance(ts1[:, column_name].reshape(-1, 1), ts2[:, column_name].reshape(-1, 1))})
+                {column_name: self.__js_distance(ts1[:, column_index].reshape(-1, 1), ts2[:, column_index].reshape(-1, 1))})
         return metric_result
 
     def compute_distance(self, ts1, ts2):

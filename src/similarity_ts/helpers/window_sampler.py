@@ -24,12 +24,12 @@ def split_ts_strided(ts_np, seq_len, stride):
     return ts_windows
 
 
-def create_ts1_ts2_associated_windows(ts1_windows, ts2_dict, window_selection_metric):
-    metric_object = MetricFactory.get_metric_by_name(window_selection_metric)
+def create_ts1_ts2_associated_windows(similarity_ts):
+    metric_object = MetricFactory.get_metric_by_name(similarity_ts.similarity_ts_config.window_selection_metric)
     ts1_ts2_associated_windows = {}
-    for filename, ts2 in tqdm(ts2_dict.items(), desc='Selecting most similar windows'):
-        most_similar_ts1_sample = __get_most_similar_ts_sample(ts1_windows, ts2, metric_object)
-        cached_metric = {window_selection_metric: metric_object.compute(most_similar_ts1_sample, ts2)}
+    for filename, ts2 in tqdm(similarity_ts.ts2_dict.items(), desc='Selecting most similar windows'):
+        most_similar_ts1_sample = __get_most_similar_ts_sample(similarity_ts.ts1_windows, ts2, metric_object)
+        cached_metric = {similarity_ts.similarity_ts_config.window_selection_metric: metric_object.compute(most_similar_ts1_sample, ts2, similarity_ts)}
         ts1_ts2_associated_windows[filename] = {}
         ts1_ts2_associated_windows[filename]['most_similar_ts1_sample'] = most_similar_ts1_sample
         ts1_ts2_associated_windows[filename]['ts2'] = ts2
