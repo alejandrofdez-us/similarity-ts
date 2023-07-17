@@ -8,7 +8,7 @@ class Cp(Metric):
         super().__init__()
         self.name = 'cp'
 
-    def compute(self, ts1, ts2):
+    def compute(self, ts1, ts2, similarity_ts):
         return {'Multivariate': self.__cp(ts1, ts2)}
 
     def compute_distance(self, ts1, ts2):

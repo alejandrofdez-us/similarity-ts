@@ -9,11 +9,11 @@ class Kl(Metric):
         super().__init__()
         self.name = 'kl'
 
-    def compute(self, ts1, ts2):
+    def compute(self, ts1, ts2, similarity_ts):
         metric_result = {'Multivariate': self.kl_divergence(ts1, ts2)}
-        for column in range(ts2.shape[1]):
-            metric_result.update({f'Column_{column}': self.kl_divergence_univariate(ts1[:, column].reshape(-1, 1),
-                                                                                    ts2[:, column].reshape(-1, 1))})
+        for column_name in similarity_ts.header_names:
+            metric_result.update({column_name: self.kl_divergence_univariate(ts1[:, column_name].reshape(-1, 1),
+                                                                                    ts2[:, column_name].reshape(-1, 1))})
         return metric_result
 
     def compute_distance(self, ts1, ts2):

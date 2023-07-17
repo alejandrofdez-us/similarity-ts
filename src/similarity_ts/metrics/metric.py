@@ -1,6 +1,6 @@
 class Metric:
 
-    def compute(self, ts1, ts2):
+    def compute(self, ts1, ts2, similarity_ts):
         raise NotImplementedError('Subclasses must implement compute() method')
 
     def compute_distance(self, ts1, ts2):

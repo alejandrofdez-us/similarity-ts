@@ -8,7 +8,7 @@ class Cc(Metric):
         super().__init__()
         self.name = 'cc'
 
-    def compute(self, ts1, ts2):
+    def compute(self, ts1, ts2, similarity_ts):
         metric_result = {'Multivariate': self.__cc(ts1, ts2)}
         return metric_result
 
