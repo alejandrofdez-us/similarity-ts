@@ -7,9 +7,11 @@
 
 ## Table of Contents
 
-- [Project Description](#project-description)
+- [Package Description](#package-description)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Configuring the toolkit](#configuring-the-toolkit)
+- [Extending the toolkit](#extending-the-toolkit)
 - [License](#license)
 
 ## Package Description
