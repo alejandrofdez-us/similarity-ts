@@ -102,21 +102,41 @@ the
 [metrics](#available-metrics) are also available for this purpose. See the [toolkit configuration section](#configuring-the-toolkit)
 
 ## Configuring the Toolkit
-Users can provide metrics or figures to be computed/generated:
+Users can provide metrics or figures to be computed/generated and some other parameterisation. The following code snippet 
+creates a configuration object that should be passed to the `SimilarityTs` constructor:
+```Python
+def __create_similarity_ts_config():
+    # The list of metrics names that will be computed
+    metric_config = MetricConfig(['js', 'mmd']) 
+    # The list of figure names that will be generated and the time step in seconds of the time series.
+    plot_config = PlotConfig(['delta', 'pca'], timestamp_frequency_seconds=300)
 
-- `-m` the [metrics](#available-metrics) names to be computed as a list separated by spaces.
-- `-f` the [figures](#available-figures) names to be computed as a list separated by spaces
+    # Name of each time series of the ts2s set of time series
+    ts2_names = ['ts2_1_name', 'ts2_2_name', 'ts2_3_name', 'ts2_4_name', 'ts2_5_name']
+    # Name of the features
+    header_names = ['feature1_name', 'feature2_name']
+    
+    # Creation of the configuration
+      # stride for cutting the ts1 when needed
+      # metric used for selecting the most similar window
+    similarity_ts_config = SimilarityTsConfig(metric_config, plot_config,
+                                              stride=10, window_selection_metric='kl',
+                                              ts2_names=ts2_names, header_names=header_names)
+    return similarity_ts_config
+```
 
 If no metrics nor figures are provided, the tool will compute all the available metrics and figures.
 
 The following arguments are also available for fine-tuning:
 
-- `-ts_freq_secs` the frequency in seconds in which samples were taken just to generate the delta figures. By default is
+- `timestamp_frequency_seconds` the frequency in seconds in which samples were taken. This is needed to generate the delta figures with correct time magnitudes. By default is
   `1` second.
-- `-strd` when `ts1` time-series is longer than `ts2_path` time-series file(s) the windows are computed by using a
+- `stride` when `ts1` time-series is longer than `ts2s` time-series the windows are computed by using a
   stride of `1` by default. Sometimes using a larger value for the stride parameter improves the performance by skipping
   the computation of similarity between so many windows.
-
+- `window_selection_metric` the metric used for the selection of the most similar `ts1` time-series window per each `ts2s` time-series file is selectable.`dtw` is the default selected metric, however, any of the [metrics](#available-metrics) are also available for this purpose. See the [toolkit configuration section](#configuring-the-toolkit).
+- `ts2_names` name of each time series of the `ts2s` set of time series.
+- `header_names` name of the features
 ### Minimal usage examples:
 
 1. Compute metrics between random time series (`ts1`: one time series of lenght 200 and 2 dimensions and `ts2`: five time series of length 100 and 2 dimensions):
