@@ -173,22 +173,38 @@ The following arguments are also available for fine-tuning:
         main()
     ```
 ### Customised usage
-
+TODO: include some examples reading csv files and creating metrics and plots configs.
 
 ## Extending the toolkit
 
-Additionally, users may implement their own metric or figure classes and include them within the `metrics` or `plots`
-directory. To ensure compatibility with our framework, they have to inherit from the base classes (`Metric` and `Plot`).
+Additionally, users may implement their own metric or figure classes and include them by using the `MetricFactory` or `PlotFactory` register methods. To ensure compatibility with our framework, they have to inherit from the base classes (`Metric` and `Plot`).
 
-The following code snippet is an example of a new metric:
+The following code snippet is an example of how to introduce the Euclidean disntance metric:
 
 ```Python
+import numpy as np
+from .metric import Metric
 
+
+class EuclideanDistance(Metric):
+
+    def __init__(self):
+        super().__init__()
+        self.name = 'eu'
+
+    def compute(self, ts1, ts2):
+        metric_result = {'Multivariate': self.__eu(ts1, ts2)}
+        return metric_result
+
+    def compute_distance(self, ts1, ts2):
+        return self.__eu(ts1, ts2)
+
+    def __eu(self, ts1, ts2):
+        return np.linalg.norm(ts1 - ts2)
 ```
 
-This allows the framework to dynamically recognize and utilize these custom classes based on user input. By including
-them in the argument parser, users can easily select their custom metrics or plots when running the framework, ensuring
-that their classes are properly integrated and applied during the time series evaluation process.
+This allows the toolkit to dynamically recognize and utilize these custom classes based on user input. By cloning the GitHub repository and including
+them in the `metrics` folder, users can easily include their custom metrics when running the toolkit.
 
 ## License
 
