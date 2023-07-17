@@ -1,6 +1,6 @@
-[![version](https://img.shields.io/badge/version-2.0-blue)](https://github.com/alejandrofdez-us/TimeSeriesEvaluationFramework/releases)
+[![version](https://img.shields.io/badge/version-2.0-blue)](https://github.com/alejandrofdez-us/similarity-ts/releases)
 [![Python 3.9](https://img.shields.io/badge/python-3.9-darkgreen)](https://www.python.org/downloads/release/python-390/)
-[![last-update](https://img.shields.io/badge/last_update-07/XY/2023-brightgreen)](https://github.com/alejandrofdez-us/TimeSeriesEvaluationFramework/commits/main)
+[![last-update](https://img.shields.io/badge/last_update-07/XY/2023-brightgreen)](https://github.com/alejandrofdez-us/similarity-ts/commits/main)
 ![license](https://img.shields.io/badge/license-MIT-orange)
 
 # SimilarityTS: Toolkit for the Evaluation of Similarity for multivariate time series
