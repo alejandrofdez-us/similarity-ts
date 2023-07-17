@@ -17,6 +17,10 @@ class PlotFactory(metaclass=Singleton):
         self.plots_to_be_generated = self.__get_plots_to_be_generated(figure_names_to_be_generated)
         self.figures_requires_all_samples = self.__get_figures_that_requires_all_samples()
 
+    def register_plot(self, plot_class):
+        new_plot = plot_class()
+        self.plots_to_be_generated.append(new_plot)
+
     @staticmethod
     def __get_plots_to_be_generated(figure_names_to_be_generated):
         return [plot for plot_name, plot in PlotFactory.find_available_figures().items() if

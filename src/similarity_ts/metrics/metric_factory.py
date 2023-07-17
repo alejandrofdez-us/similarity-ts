@@ -16,6 +16,10 @@ class MetricFactory(metaclass=Singleton):
     def __init__(self, metrics_names_to_be_computed):
         self.metric_objects = self.__get_metrics_to_be_computed(metrics_names_to_be_computed)
 
+    def register_metric(self, metric_class):
+        new_metric = metric_class()
+        self.metric_objects.append(new_metric)
+
     @staticmethod
     def __get_metrics_to_be_computed(metrics_names_to_be_computed):
         return [metric for metric_name, metric in MetricFactory.find_available_metrics().items() if
