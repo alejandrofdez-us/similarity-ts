@@ -73,41 +73,35 @@ pip install similarity-ts
 
 ## Usage
 
-Users must provide numpy objects containing multivariate time series.
+Users must create a new `SimilarityTs` object by calling its constructor and passing the following parameters.
 
-- `-ts1` should point to a single `csv` filename. This time series may represent the baseline or ground truth time
-  series.
-- `-ts2_path` can point to another single `csv` filename or a directory that contains multiple `csv` files to be
-  compared with `-ts1` file.
-- `-head` if your time series files include a header this argument must be present. If not present, the software
-  understands that csv files don't include a header row.
+- `ts1` This time series may represent the baseline or ground truth time
+  series as a `numpy` object with shape `[length, num_features]`.
+- `ts2s` A single or a set of time series as a `numpy` object with shape `[num_time_series, length, num_features]`.
+
 
 Constraints:
 
-- `-ts1` time-series file and `-ts2_path` time-series file(s) must:
+- `ts1` time-series and `ts2s` time-series file(s) must:
     - have the same dimensionality (number of columns)
-    - not include a timestamp column
+    - do not include a timestamp column
     - include only numeric values
-    - include the same header (if present)
-- if a header is present as first row, use the `-head` argument
-- all `-ts2_path` time-series files must have the same length (number of rows).
+- all `ts2s` time-series must have the same length (number of rows).
 
-Note: the column delimiter is automatically detected.
+If `ts1` time-series is longer (more rows) than `ts2s` time-series, the `ts1` time series will be
+divided in windows of the same length as the `-ts2s` time-series.
 
-If `-ts1` time-series file is longer (more rows) than `-ts2_path` time-series file(s), the `-ts1` time series will be
-divided in windows of the same
-length as the `-ts2_path` time-series file(s).
+For each `ts2s` time-series, the most similar window (*) from `ts1` time series is selected.
 
-For each `-ts2_path` time-series file, the most similar window (*) from `-ts1` time series is selected.
+Finally, metrics and figures that assess the similarity between each pair of `ts2s` time-series and its
+associated most similar `ts1` window are computed.
 
-Finally, metrics and figures that assess the similarity between each pair of `-ts2_path` time-series file and its
-associated most similar `-ts1` window are computed.
-
-(*) `-w_select_met` is the metric used for the selection of the most
-similar `-ts1` time-series window per each `--ts2_path` time-series file(s).`dtw` is the default value, however, any of
+(*) The metric used for the selection of the most
+similar `ts1` time-series window per each `ts2s` time-series file is selectable.`dtw` is the default selected metric, however, any of
 the
-[metrics](#available-metrics) are also available for this purpose using this argument.
+[metrics](#available-metrics) are also available for this purpose. See the [toolkit configuration section](#configuring-the-toolkit)
 
+## Configuring the Toolkit
 Users can provide metrics or figures to be computed/generated:
 
 - `-m` the [metrics](#available-metrics) names to be computed as a list separated by spaces.
@@ -173,38 +167,132 @@ The following arguments are also available for fine-tuning:
         main()
     ```
 ### Customised usage
-TODO: include some examples reading csv files and creating metrics and plots configs.
-
+For a customised example you can read the following Python script:
+https://github.com/alejandrofdez-us/similarity-ts-cli/blob/main/src/similarity_ts_cli/cli.py
 ## Extending the toolkit
 
 Additionally, users may implement their own metric or figure classes and include them by using the `MetricFactory` or `PlotFactory` register methods. To ensure compatibility with our framework, they have to inherit from the base classes (`Metric` and `Plot`).
 
-The following code snippet is an example of how to introduce the Euclidean disntance metric:
+The following code snippet is an example of how to introduce the Euclidean distance metric:
 
 ```Python
+#eu.py
 import numpy as np
-from .metric import Metric
+from similarity_ts.metrics.metric import Metric
 
 
 class EuclideanDistance(Metric):
 
     def __init__(self):
         super().__init__()
-        self.name = 'eu'
+        self.name = 'ed'
 
-    def compute(self, ts1, ts2):
-        metric_result = {'Multivariate': self.__eu(ts1, ts2)}
+    def compute(self, ts1, ts2, similarity_ts):
+        metric_result = {'Multivariate': self.__ed(ts1, ts2)}
         return metric_result
 
     def compute_distance(self, ts1, ts2):
-        return self.__eu(ts1, ts2)
+        return self.__ed(ts1, ts2)
 
-    def __eu(self, ts1, ts2):
+    def __ed(self, ts1, ts2):
         return np.linalg.norm(ts1 - ts2)
+
 ```
 
-This allows the toolkit to dynamically recognize and utilize these custom classes based on user input. By cloning the GitHub repository and including
-them in the `metrics` folder, users can easily include their custom metrics when running the toolkit.
+Afterward, this metric can be registered by using the `register_metric(metric_class)` method from `MetricFactory` as shown in the following code snippet:
+```Python
+import numpy as np
+from similarity_ts.similarity_ts import SimilarityTs
+from similarity_ts.metrics.metric_factory import MetricFactory
+from ed import EuclideanDistance
+
+MetricFactory.get_instance().register_metric(EuclideanDistance)
+ts1 = np.random.rand(200, 2)
+ts2s = np.random.rand(5, 100, 2)
+similarity_ts = SimilarityTs(ts1, ts2s)
+for ts2_name, metric_name, computed_metric in similarity_ts.get_metric_computer():
+    print(f'{ts2_name}. {metric_name}: {computed_metric}')
+```
+
+Similarly, new plots can be introduced. For instance a `SimilarityPlotByCorrelation` could be defined as:
+```Python
+#cc_plot.py
+import numpy as np
+import matplotlib.pyplot as plt
+from similarity_ts.plots.plot import Plot
+
+
+class SimilarityPlotByCorrelation(Plot):
+
+    def __init__(self, fig_size=(8, 6)):
+        super().__init__(fig_size)
+        self.name = 'cc-plot'
+
+    def compute(self, similarity_ts, ts2_filename):
+        super().compute(similarity_ts, ts2_filename)
+        n_features = self.ts1.shape[1]
+        similarity = np.corrcoef(self.ts1.T, self.ts2.T)
+        fig, ax = plt.subplots()
+        im = ax.imshow(similarity, cmap='RdYlBu', vmin=-1, vmax=1)
+        ax.set_xticks(np.arange(n_features*2))
+        ax.set_yticks(np.arange(n_features*2))
+        xticklabels = [f'ts1_{nfeatures_index}'for nfeatures_index in range(1, n_features+1)]
+        xticklabels = xticklabels + [f'ts2_{nfeatures_index}'for nfeatures_index in range(1, n_features+1)]
+        ax.set_xticklabels(xticklabels)
+        ax.set_yticklabels(xticklabels)
+        ax.set_xlabel('Feature')
+        ax.set_ylabel('Feature')
+        for i in range(n_features*2):
+            for j in range(n_features*2):
+                ax.text(j, i, f'{similarity[i, j]:.2f}', ha='center', va='center', color='black')
+
+        cbar = ax.figure.colorbar(im, ax=ax)
+        cbar.ax.set_ylabel('Similarity', rotation=-90, va='bottom')
+        plt.title('similarity-correlation')
+        plt.tight_layout()
+        return [(fig, ax)]
+```
+
+Afterward, this plot can be registered by using the `register_plot(plot_class)` method from `PlotFactory` as shown in the following code snippet that register the new metric and the new plot:
+```Python
+import os
+import numpy as np
+from similarity_ts.plots.plot_factory import PlotFactory
+from similarity_ts.similarity_ts import SimilarityTs
+from similarity_ts.metrics.metric_factory import MetricFactory
+from ed import EuclideanDistance
+from cc_plot import SimilarityPlotByCorrelation
+
+def main():
+    MetricFactory.get_instance().register_metric(EuclideanDistance)
+    PlotFactory.get_instance().register_plot(SimilarityPlotByCorrelation)
+    ts1 = np.random.rand(200, 2)
+    ts2s = np.random.rand(5, 100, 2)
+    similarity_ts = SimilarityTs(ts1, ts2s)
+    for ts2_name, metric_name, computed_metric in similarity_ts.get_metric_computer():
+        print(f'{ts2_name}. {metric_name}: {computed_metric}')
+    for ts2_name, plot_name, generated_plots in similarity_ts.get_plot_computer():
+        __save_figures(ts2_name, plot_name, generated_plots)
+
+
+def __save_figures(filename, plot_name, generated_plots):
+    for plot in generated_plots:
+        dir_path = __create_directory(filename, f'figures', plot_name)
+        plot[0].savefig(f'{dir_path}{plot[0].axes[0].get_title()}.pdf', format='pdf', bbox_inches='tight')
+
+
+def __create_directory(filename, path, plot_name):
+    if plot_name in PlotFactory.get_instance().figures_requires_all_samples:
+        dir_path = f'{path}/{plot_name}/'
+    else:
+        original_filename = os.path.splitext(filename)[0]
+        dir_path = f'{path}/{original_filename}/{plot_name}/'
+    os.makedirs(dir_path, exist_ok=True)
+    return dir_path
+
+if __name__ == '__main__':
+    main()
+```
 
 ## License
 
