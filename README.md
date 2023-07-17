@@ -54,12 +54,12 @@ This toolkit can generate the following figures:
     <img src="docs/figures/2d_sample_3_cpu_util_percent_TS_1_vs_TS_2.png" alt="2D Figure for used CPU percentage">
     </div>
 - `delta`: the differences between the values of each column grouped by periods of time. For instance, the differences
-  between the percentage of cpu used every 2, 5 or 10 minutes. These delta can be used as a means of comparison between
+  between the percentage of cpu used every 10, 25 or 50 minutes. These delta can be used as a means of comparison between
   time series short-/mid-/long-term patterns.
     <div align="center">
-    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_2_seconds).png" alt="Delta Figure for used CPU percentage grouped by 2 minutes">
-    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_5_seconds).png" alt="Delta Figure for used CPU percentage grouped by 5 minutes">
-    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_10_seconds).png" alt="Delta Figure for used CPU percentage grouped by 10 minutes">
+    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_10_minutes).png" alt="Delta Figure for used CPU percentage grouped by 2 minutes">
+    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_25_minutes).png" alt="Delta Figure for used CPU percentage grouped by 5 minutes">
+    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_50_minutes).png" alt="Delta Figure for used CPU percentage grouped by 10 minutes">
     </div>
 
 - `pca`: the linear dimensionality reduction technique that aims to find the principal components of a data set by
