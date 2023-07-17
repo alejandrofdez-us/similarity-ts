@@ -186,12 +186,10 @@ The following arguments are also available for fine-tuning:
     if __name__ == '__main__':
         main()
     ```
-### Customised usage
-For a customised example you can read the following Python script:
-https://github.com/alejandrofdez-us/similarity-ts-cli/blob/main/src/similarity_ts_cli/cli.py
+
 ## Extending the toolkit
 
-Additionally, users may implement their own metric or figure classes and include them by using the `MetricFactory` or `PlotFactory` register methods. To ensure compatibility with our framework, they have to inherit from the base classes (`Metric` and `Plot`).
+Additionally, users may implement their own metric or figure classes and include them by using the `MetricFactory` or `PlotFactory` register methods. To ensure compatibility with our toolkit, they have to inherit from the base classes `Metric` and `Plot`.
 
 The following code snippet is an example of how to introduce the Euclidean distance metric:
 
