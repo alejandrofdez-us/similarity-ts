@@ -1,7 +1,7 @@
-[![version](https://img.shields.io/badge/version-1.0-blue)](https://github.com/alejandrofdez-us/similarity-ts/releases)
+[![version](https://img.shields.io/badge/pypi-1.0.2-blue)](https://pypi.org/project/similarity-ts/)
 [![Python 3.9](https://img.shields.io/badge/python-3.9-darkgreen)](https://www.python.org/downloads/release/python-390/)
-[![last-update](https://img.shields.io/badge/last_update-07/XY/2023-brightgreen)](https://github.com/alejandrofdez-us/similarity-ts/commits/main)
-![license](https://img.shields.io/badge/license-MIT-orange)
+[![last-update](https://img.shields.io/badge/last_update-07/18/2023-brightgreen)](https://github.com/alejandrofdez-us/similarity-ts-cli/commits/main)
+[![license](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
 # SimilarityTS: Toolkit for the Evaluation of Similarity for multivariate time series
 
@@ -23,7 +23,7 @@ time series by offering data preprocessing, metrics computation, visualization, 
 functionalities. With its customizable features, SimilarityTS empowers researchers and data
 scientists to gain insights, identify patterns, and make informed decisions based on their time series data.
 
-A command line interface tool is also available at: https://github.com/alejandrofdez-us/similarity-ts-cli
+A command line interface tool is also available at: https://github.com/alejandrofdez-us/similarity-ts-cli.
 
 ### Available metrics
 
@@ -114,12 +114,12 @@ Finally, metrics and figures that assess the similarity between each pair of `ts
 associated most similar `ts1` window are computed.
 
 (*) The metric used for the selection of the most
-similar `ts1` time-series window per each `ts2s` time-series file is selectable.`dtw` is the default selected metric, however, any of
+similar `ts1` time-series window per each `ts2s` time-series file is selectable. `dtw` is the default selected metric, however, any of
 the
-[metrics](#available-metrics) are also available for this purpose. See the [toolkit configuration section](#configuring-the-toolkit)
+[metrics](#available-metrics) are also available for this purpose. See the [toolkit configuration section](#configuring-the-toolkit).
 
 ### Minimal usage examples:
-Usage examples can be found at: https://github.com/alejandrofdez-us/similarity-ts/tree/main/usage_examples
+Usage examples can be found at: https://github.com/alejandrofdez-us/similarity-ts/tree/main/usage_examples.
 
 1. Compute metrics between random time series (`ts1`: one time series of lenght 200 and 2 dimensions and `ts2`: five time series of length 100 and 2 dimensions):
     ```Python
@@ -204,7 +204,7 @@ The following arguments are also available for fine-tuning:
   the computation of similarity between so many windows.
 - `window_selection_metric`: the metric used for the selection of the most similar `ts1` time-series window per each `ts2s` time-series file is selectable.`dtw` is the default selected metric, however, any of the [metrics](#available-metrics) are also available for this purpose. See the [toolkit configuration section](#configuring-the-toolkit).
 - `ts2_names`: name of each time series of the `ts2s` set of time series.
-- `header_names`: name of the features
+- `header_names`: name of the features.
 
 
 ## Extending the toolkit
