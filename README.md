@@ -101,7 +101,7 @@ Constraints:
 
 - `ts1` time-series and `ts2s` time-series file(s) must:
     - have the same dimensionality (number of columns)
-    - do not include a timestamp column
+    - not include a timestamp column
     - include only numeric values
 - all `ts2s` time-series must have the same length (number of rows).
 
