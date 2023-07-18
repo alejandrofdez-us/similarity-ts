@@ -47,7 +47,7 @@ This toolkit can generate the following figures:
     - the complete multivariate time series; and
     - a plot per column.
 
-  Each generated figure plots both the original and the synthetically generated data to easily obtain key insights into
+  Each generated figure plots both the `ts1` and the `ts2` data to easily obtain key insights into
   the similarities or differences between them.
     <div>
     <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/2d_sample_3_complete_TS_1_vs_TS_2.png?raw=true" alt="2D Figure complete">
@@ -69,7 +69,7 @@ This toolkit can generate the following figures:
     </div>
 - `tsne`: a tool for visualising high-dimensional data sets in a 2D or 3D graphical representation allowing the creation
   of a single map that reveals the structure of the data at many different scales.
-    <div>
+    <div align="center">
     <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/t-SNE-iter_300-perplexity_5.png?raw=true" alt="TSNE Figure 300 iterations 5 perplexity" width="450">
     <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/t-SNE-iter_1000-perplexity_5.png?raw=true" alt="TSNE Figure 1000 iterations 5 perplexity" width="450">
     </div>
