@@ -50,7 +50,7 @@ This toolkit can generate the following figures:
   Each generated figure plots both the original and the synthetically generated data to easily obtain key insights into
   the similarities or differences between them.
     <div align="center">
-    <img src="docs/figures/2d_sample_3_complete_TS_1_vs_TS_2.png" alt="2D Figure complete">
+    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/2d_sample_3_complete_TS_1_vs_TS_2.png" alt="2D Figure complete">
     <img src="docs/figures/2d_sample_3_cpu_util_percent_TS_1_vs_TS_2.png" alt="2D Figure for used CPU percentage">
     </div>
 - `delta`: the differences between the values of each column grouped by periods of time. For instance, the differences
