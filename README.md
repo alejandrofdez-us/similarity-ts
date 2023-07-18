@@ -93,8 +93,8 @@ pip install similarity-ts
 Users must create a new `SimilarityTs` object by calling its constructor and passing the following parameters.
 
 - `ts1` This time series may represent the baseline or ground truth time
-  series as a `numpy` object with shape `[length, num_features]`.
-- `ts2s` A single or a set of time series as a `numpy` object with shape `[num_time_series, length, num_features]`.
+  series as a `numpy` array with shape `[length, num_features]`.
+- `ts2s` A single or a set of time series as a `numpy` array with shape `[num_time_series, length, num_features]`.
 
 
 Constraints:
