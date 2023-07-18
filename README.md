@@ -119,6 +119,7 @@ the
 [metrics](#available-metrics) are also available for this purpose. See the [toolkit configuration section](#configuring-the-toolkit)
 
 ### Minimal usage examples:
+Usage examples can be found at: https://github.com/alejandrofdez-us/similarity-ts/tree/main/usage_examples
 
 1. Compute metrics between random time series (`ts1`: one time series of lenght 200 and 2 dimensions and `ts2`: five time series of length 100 and 2 dimensions):
     ```Python
