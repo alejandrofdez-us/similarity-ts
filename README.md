@@ -42,7 +42,7 @@ This toolkit can compute the following metrics:
 
 This toolkit can generate the following figures:
 
-- `2D`: the ordinary graphical representation of the time series in a 2D figure with the time represented on the x axis
+- `2d`: the ordinary graphical representation of the time series in a 2D figure with the time represented on the x axis
   and the data values on the y-axis for
     - the complete multivariate time series; and
     - a plot per column.
@@ -50,34 +50,34 @@ This toolkit can generate the following figures:
   Each generated figure plots both the original and the synthetically generated data to easily obtain key insights into
   the similarities or differences between them.
     <div align="center">
-    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/2d_sample_3_complete_TS_1_vs_TS_2.png" alt="2D Figure complete">
-    <img src="docs/figures/2d_sample_3_cpu_util_percent_TS_1_vs_TS_2.png" alt="2D Figure for used CPU percentage">
+    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/2d_sample_3_complete_TS_1_vs_TS_2.png?raw=true" alt="2D Figure complete">
+    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/2d_sample_3_cpu_util_percent_TS_1_vs_TS_2.png?raw=true" alt="2D Figure for used CPU percentage">
     </div>
 - `delta`: the differences between the values of each column grouped by periods of time. For instance, the differences
   between the percentage of cpu used every 10, 25 or 50 minutes. These delta can be used as a means of comparison between
   time series short-/mid-/long-term patterns.
     <div align="center">
-    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_10_minutes).png" alt="Delta Figure for used CPU percentage grouped by 2 minutes">
-    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_25_minutes).png" alt="Delta Figure for used CPU percentage grouped by 5 minutes">
-    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_50_minutes).png" alt="Delta Figure for used CPU percentage grouped by 10 minutes">
+    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_10_minutes).png?raw=true" alt="Delta Figure for used CPU percentage grouped by 10 minutes">
+    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_25_minutes).png?raw=true" alt="Delta Figure for used CPU percentage grouped by 25 minutes">
+    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_50_minutes).png?raw=true" alt="Delta Figure for used CPU percentage grouped by 50 minutes">
     </div>
 
 - `pca`: the linear dimensionality reduction technique that aims to find the principal components of a data set by
   computing the linear combinations of the original characteristics that explain the most variance in the data.
     <div align="center">
-    <img src="docs/figures/PCA.png" alt="PCA Figure" width="450">
+    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/PCA.png?raw=true" alt="PCA Figure" width="450">
     </div>
 - `tsne`: a tool for visualising high-dimensional data sets in a 2D or 3D graphical representation allowing the creation
   of a single map that reveals the structure of the data at many different scales.
     <div align="center">
-    <img src="docs/figures/t-SNE-iter_300-perplexity_5.png" alt="TSNE Figure 300 iterations 5 perplexity" width="450">
-    <img src="docs/figures/t-SNE-iter_1000-perplexity_5.png" alt="TSNE Figure 1000 iterations 5 perplexity" width="450">
+    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/t-SNE-iter_300-perplexity_5.png?raw=true" alt="TSNE Figure 300 iterations 5 perplexity" width="450">
+    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/t-SNE-iter_1000-perplexity_5.png?raw=true" alt="TSNE Figure 1000 iterations 5 perplexity" width="450">
     </div>
 - `dtw` path: In addition to the numerical similarity measure, the graphical representation of the DTW path of each
   column can be useful to better analyse the similarities or differences between the time series columns. Notice that
   there is no multivariate representation of DTW paths, only single column representations.
     <div align="center">
-    <img src="docs/figures/DTW_sample_3_cpu_util_percent.png" alt="DTW Figure for cpu">
+    <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/DTW_sample_3_cpu_util_percent.png?raw=true" alt="DTW Figure for cpu">
     </div>
 
 ## Installation
