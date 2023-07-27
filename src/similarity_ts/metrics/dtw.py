@@ -20,10 +20,4 @@ class Dtw(Metric):
         return self.__compute_dtw(ts1, ts2)
 
     def __compute_dtw(self, ts1, ts2):
-        sample_length = len(ts2)
-        processed_ts2 = np.insert(ts2, 0, np.ones(sample_length, dtype=int), axis=1)
-        processed_ts2 = np.insert(processed_ts2, 0, range(sample_length), axis=1)
-        processed_ts1 = np.insert(ts1, 0, np.ones(sample_length, dtype=int), axis=1)
-        processed_ts1 = np.insert(processed_ts1, 0, range(sample_length), axis=1)
-
-        return dtw_ndim.distance_fast(processed_ts2, processed_ts1)
+        return dtw_ndim.distance_fast(ts2, ts1)
