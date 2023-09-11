@@ -25,3 +25,6 @@ class DimensionalityReduction(Plot):
 
     def _generate_colors(self, color1_size, color2_size):
         return ['red' for _ in range(color1_size)] + ['blue' for _ in range(color2_size)]
+
+    def _set_labels(self, title, x_label, y_label, ncol = None):
+        super()._set_labels(title, x_label, y_label, ncol=2)

@@ -28,8 +28,10 @@ class Plot:
         plt.rcParams['figure.figsize'] = self.fig_size
         return plt.subplots(1)
 
-    def _set_labels(self, title, x_label, y_label):
+    def _set_labels(self, title, x_label, y_label, ncol = None):
+        if ncol is None:
+            ncol = self.ts1.shape[1]
         plt.title(title)
         plt.xlabel(x_label)
         plt.ylabel(y_label)
-        plt.legend(loc='best')
+        plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12), ncol=ncol)

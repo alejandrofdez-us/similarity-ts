@@ -34,7 +34,7 @@ class TwoDimensions(Plot):
         plt.gca().set_prop_cycle(None)
         self.ts2_df.plot(ax=axis)
         plt.xlim(left=0, right=len(self.ts2_df) - 1)
-        super()._set_labels('complete_TS_1_vs_TS_2', 'time', 'values')
+        super()._set_labels('complete_TS_1_vs_TS_2', 'time', 'values', ncol=self.ts1.shape[1]*2)
         plt.close('all')
         return fig, axis
 
@@ -43,6 +43,6 @@ class TwoDimensions(Plot):
         plt.plot(ts1_column, c='green', label='TS_1', linewidth=1)
         plt.plot(ts2_column, c='blue', label='TS_2', linewidth=2)
         plt.xlim(left=0, right=len(ts1_column) - 1)
-        super()._set_labels(f'{column_name}_TS_1_vs_TS_2', 'time', column_name)
+        super()._set_labels(f'{column_name}_TS_1_vs_TS_2', 'time', column_name, ncol=2)
         plt.close('all')
         return fig, axis
