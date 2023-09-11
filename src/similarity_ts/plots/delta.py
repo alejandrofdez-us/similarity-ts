@@ -74,7 +74,7 @@ class Delta(Plot):
         axis_limits = [0, len(delta_ts2_column) - 1, min_y, max_y]
         plt.axis(axis_limits)
         super()._set_labels(f'{column_name}_TS_1_vs_TS_2_(grouped_by_{int(time_interval)}_{self.time_magnitude_name})',
-                            'time', column_name)
+                            'time', column_name, ncol=6)
         plt.close('all')
         return fig, axis
 

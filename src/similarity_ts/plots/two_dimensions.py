@@ -3,6 +3,7 @@ import pandas
 from .plot import Plot
 
 
+
 class TwoDimensions(Plot):
     def __init__(self):
         super().__init__()
@@ -30,13 +31,27 @@ class TwoDimensions(Plot):
 
     def __generate_plot_from_df(self):
         fig, axis = super()._init_plot()
-        self.ts1_df.plot(ax=axis, style='--')
+        lines1, labels1 = self.__get_lines_and_labels_from_plot(self.ts1_df, axis, style='--')
         plt.gca().set_prop_cycle(None)
-        self.ts2_df.plot(ax=axis)
+        lines2, labels2 = self.__get_lines_and_labels_from_plot(self.ts2_df, axis)
+        interleaved_lines = self.__interleave_lists(lines1, lines2)
+        interleaved_labels = self.__interleave_lists(labels1, labels2)
         plt.xlim(left=0, right=len(self.ts2_df) - 1)
-        super()._set_labels('complete_TS_1_vs_TS_2', 'time', 'values', ncol=self.ts1.shape[1]*2)
+        super()._set_labels('complete_TS_1_vs_TS_2', 'time', 'values', ncol=len(lines1), lines=interleaved_lines,
+                            labels=interleaved_labels)
         plt.close('all')
         return fig, axis
+
+    def __get_lines_and_labels_from_plot(self, dataframe, axis, style=None):
+        plot_lines = dataframe.plot(ax=axis, style=style).lines[-len(dataframe.columns):]
+        plot_labels = dataframe.columns.tolist()
+        return plot_lines, plot_labels
+
+    def __interleave_lists(self, list1, list2):
+        interleaved_list = [None] * (len(list1) + len(list2))
+        interleaved_list[::2] = list1
+        interleaved_list[1::2] = list2
+        return interleaved_list
 
     def __generate_plot_by_column(self, ts1_column, ts2_column, column_name):
         fig, axis = super()._init_plot()

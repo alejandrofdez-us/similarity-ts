@@ -6,7 +6,7 @@ class Plot:
     def requires_all_samples():
         return False
 
-    def __init__(self, fig_size=(18, 3)):
+    def __init__(self, fig_size=(18, 5)):
         self.ts2_filename = None
         self.ts1 = None
         self.ts2 = None
@@ -28,10 +28,13 @@ class Plot:
         plt.rcParams['figure.figsize'] = self.fig_size
         return plt.subplots(1)
 
-    def _set_labels(self, title, x_label, y_label, ncol = None):
+    def _set_labels(self, title, x_label, y_label, ncol=None, lines=None, labels=None):
         if ncol is None:
             ncol = self.ts1.shape[1]
         plt.title(title)
         plt.xlabel(x_label)
         plt.ylabel(y_label)
-        plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12), ncol=ncol)
+        if lines and labels:
+            plt.legend(lines, labels, loc='upper center', bbox_to_anchor=(0.5, -0.12), ncol=ncol)
+        else:
+            plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12), ncol=ncol)
