@@ -1,4 +1,4 @@
-[![version](https://img.shields.io/badge/pypi-1.0.5-blue)](https://pypi.org/project/similarity-ts/)
+[![version](https://img.shields.io/badge/pypi-1.0.6-blue)](https://pypi.org/project/similarity-ts/)
 [![Python 3.9](https://img.shields.io/badge/python-3.9-darkgreen)](https://www.python.org/downloads/release/python-390/)
 [![last-update](https://img.shields.io/badge/last_update-09/12/2023-brightgreen)](https://github.com/alejandrofdez-us/similarity-ts-cli/commits/main)
 [![license](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
