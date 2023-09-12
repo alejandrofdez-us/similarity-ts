@@ -27,7 +27,7 @@ class Dtw(Plot):
         fig, axes = dtw_visualisation.plot_warping(ts1_column, ts2_column, path)
         plt.xlim(left=0, right=len(ts1_column) - 1)
         axes[0].set_title(f'DTW_{column_name}')
-        axes[0].legend(['TS_1'], bbox_to_anchor=(1.01, 0.5))
-        axes[1].legend(['TS_2'], bbox_to_anchor=(1.01, 0.5))
+        axes[0].legend(['TS_1'], loc='upper center', bbox_to_anchor=(1.03, 0.5))
+        axes[1].legend(['TS_2'], loc='upper center', bbox_to_anchor=(1.03, 0.5))
         plt.close('all')
         return fig, axes
